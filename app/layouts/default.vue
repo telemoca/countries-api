@@ -9,8 +9,8 @@ const darkModeText = computed(() => {
 
 const darkModeIconName = computed(() =>
     isDark.value
-        ? "i-line-md:sunny-outline-to-moon-loop-transition"
-        : "i-line-md:moon-to-sunny-outline-loop-transition"
+        ? "line-md:sunny-outline-to-moon-loop-transition"
+        : "line-md:moon-to-sunny-outline-loop-transition"
 )
 </script>
 
@@ -29,7 +29,6 @@ const darkModeIconName = computed(() =>
                     :name="darkModeIconName"
                     mode="svg"
                     restart="always"
-                    :color="isDark ? 'white' : 'black'"
                 />
                 <Transition>
                     <p
