@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const user_research = defineModel<string>()
+</script>
 
 <template>
     <form
@@ -11,6 +13,7 @@
             />
         </div>
         <input
+            v-model="user_research"
             type="text"
             placeholder="Search for a country..."
             class="w-full bg-inherit outline-none dark:text-white dark:placeholder:text-gray-300"
