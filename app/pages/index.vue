@@ -1,25 +1,13 @@
 <script setup lang="ts">
-interface Country {
-    flags: {
-        png: string
-        svg: string
-        alt: string
-    }
-    name: {
-        common: string
-        official: string
-    }
-    capital: string[]
-    region: string
-    population: number
-    cca3: string
-}
-
 const { data, error } = useFetch<Country[]>(
-    "https://restcountries.com/v3.1/all?fields=cca3,name,population,region,capital,flags"
+    "https://restcountries.com/v3.1/all?fields=cca3,name,population,region,capital,flags",
+    {
+        lazy: true,
+    }
 )
 
 const user_research = ref("")
+const user_filter = ref("")
 
 const matchesSearch = (country: Country, user_research: string) => {
     const fields = [
@@ -27,19 +15,28 @@ const matchesSearch = (country: Country, user_research: string) => {
         country.name.common,
         country.capital[0],
         country.region,
-        country.cca3
+        country.cca3,
     ]
 
-    return fields.some((field) => field?.toLowerCase().includes(user_research.toLowerCase()))
+    return fields.some((field) =>
+        field?.toLowerCase().includes(user_research.toLowerCase())
+    )
 }
 
 const researchedAndFilteredData = computed(() => {
+    let newData = data.value
+
     if (user_research.value) {
-        return data.value?.filter(
-            (country) => matchesSearch(country, user_research.value))
-    } else {
-        return data.value
+        newData = newData?.filter((country) =>
+            matchesSearch(country, user_research.value)
+        )
     }
+    if (user_filter.value) {
+        newData = newData?.filter(
+            (country) => country.region === user_filter.value
+        )
+    }
+    return newData
 })
 
 const formattedPopulation = (population: number) => {
@@ -50,11 +47,13 @@ const formattedPopulation = (population: number) => {
 <template>
     <div class="w-[90%] m-auto">
         <SearchBar v-model="user_research" />
+        <FilterDropdown v-model="user_filter" />
         <div v-if="error">{{ error }}</div>
         <div v-else class="grid gap-10 py-10 px-5">
-            <div
+            <NuxtLink
                 v-for="country in researchedAndFilteredData"
                 :key="country.cca3"
+                :to="country.cca3"
                 class="rounded-md bg-white dark:bg-blue-900 shadow-md overflow-hidden"
             >
                 <img
@@ -81,7 +80,7 @@ const formattedPopulation = (population: number) => {
                         </p>
                     </div>
                 </div>
-            </div>
+            </NuxtLink>
         </div>
     </div>
 </template>

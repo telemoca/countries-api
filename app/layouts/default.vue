@@ -1,7 +1,14 @@
 <script setup lang="ts">
-const isDark = useDark()
+const colorMode = useColorMode()
 
-const toggleDarkMode = useToggle(isDark)
+const isDark = computed({
+  get() {
+    return colorMode.value === 'dark'
+  },
+  set(_isDark) {
+    colorMode.preference = _isDark ? 'dark' : 'light'
+  }
+})
 
 const darkModeText = computed(() => {
     return isDark.value ? "Dark Mode" : "Light Mode"
@@ -20,25 +27,27 @@ const darkModeIconName = computed(() =>
             class="relative flex justify-between py-8 px-5 shadow-md font-display dark:bg-blue-900"
         >
             <p class="font-extrabold dark:text-white">Where in the world?</p>
-            <div
-                class="relative flex items-center justify-between w-[6.5rem] cursor-pointer select-none"
-                @click="toggleDarkMode()"
-            >
-                <Icon
-                    :key="darkModeIconName"
-                    :name="darkModeIconName"
-                    mode="svg"
-                    restart="always"
-                />
-                <Transition>
-                    <p
-                        :key="darkModeText"
-                        class="absolute right-0 font-medium dark:text-white"
-                    >
-                        {{ darkModeText }}
-                    </p>
-                </Transition>
-            </div>
+            <ClientOnly fallback-tag="div">
+                <div
+                    class="relative flex items-center justify-between w-[6.5rem] cursor-pointer select-none"
+                    @click="isDark = !isDark"
+                >
+                    <Icon
+                        :key="darkModeIconName"
+                        :name="darkModeIconName"
+                        mode="svg"
+                        restart="always"
+                    />
+                    <Transition>
+                        <p
+                            :key="darkModeText"
+                            class="absolute right-0 font-medium dark:text-white"
+                        >
+                            {{ darkModeText }}
+                        </p>
+                    </Transition>
+                </div>
+            </ClientOnly>
         </header>
         <slot />
     </div>
@@ -52,11 +61,11 @@ body {
 
 <style scoped>
 .v-enter-active {
-    transition: all .5s ease;
+    transition: all 0.5s ease;
 }
 
 .v-leave-active {
-    transition: transform .5s ease, opacity .3s ease-out;
+    transition: transform 0.5s ease, opacity 0.3s ease-out;
 }
 
 .v-enter-from {

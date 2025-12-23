@@ -9,6 +9,7 @@ export default defineNuxtConfig({
         "@vueuse/nuxt",
         "@nuxt/icon",
         "@nuxt/fonts",
+        "@nuxtjs/color-mode",
     ],
     icon: {
         mode: "css",
@@ -18,5 +19,10 @@ export default defineNuxtConfig({
         defaults: {
             weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
         },
+    },
+    colorMode: {
+        preference: "system",
+        fallback: "light",
+        classSuffix: "",
     },
 })
