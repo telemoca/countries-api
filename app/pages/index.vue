@@ -21,11 +21,6 @@ const { data, error } = useFetch<Country[]>(
 
 const user_research = ref("")
 
-// country.name.official.includes(user_research.value) ||
-//                 country.name.common.includes(user_research.value) ||
-//                 country.capital[0]?.includes(user_research.value) ||
-//                 country.region.includes(user_research.value) ||
-//                 country.cca3.includes(user_research.value)
 const matchesSearch = (country: Country, user_research: string) => {
     const fields = [
         country.name.official,
