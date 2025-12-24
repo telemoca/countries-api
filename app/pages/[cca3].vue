@@ -3,7 +3,6 @@ import countries from 'i18n-iso-countries'
 import en from 'i18n-iso-countries/langs/en.json'
 
 
-
 const { cca3 } = useRoute().params
 
 const { data, error } = useFetch<Country>(
@@ -50,15 +49,19 @@ const languages = computed(() => {
     }
     return undefined
 })
+
+useHead({
+  title: data?.value?.name.official ?? "Countries API",
+})
 </script>
 
 <template>
     <div class="w-[90%] m-auto py-7 font-display">
         <NuxtLink
-            class="flex items-center gap-2 p-2 px-4 w-fit rounded-sm shadow-neutral-300 dark:shadow-neutral-900 shadow-md dark:bg-blue-900"
-            to="/"
+        class="flex items-center gap-2 p-2 px-4 w-fit rounded-sm shadow-neutral-300 dark:shadow-neutral-900 shadow-md dark:bg-blue-900"
+        to="/"
         >
-            <Icon name="line-md:arrow-small-left" class="translate-y-[2px]" />
+        <Icon name="line-md:arrow-small-left" class="translate-y-[2px]" />
             <p>Back</p>
         </NuxtLink>
         <div v-if="error">{{ error }}</div>
