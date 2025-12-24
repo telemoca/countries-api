@@ -18,6 +18,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "@vueuse/nuxt": "^14.1.0",
     "eslint": "^9.39.1",
+    "i18n-iso-countries": "^7.14.0",
     "nuxt": "^4.2.1",
     "vue": "^3.5.25",
     "vue-router": "^4.6.3"

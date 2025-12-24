@@ -12,6 +12,7 @@ declare interface Country {
     tld: {
         0: string
     }
+    borders: string[]
     languages: object
     currencies: object
     capital: string[]

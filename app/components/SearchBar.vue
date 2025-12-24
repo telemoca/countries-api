@@ -4,7 +4,7 @@ const user_research = defineModel<string>()
 
 <template>
     <form
-        class="relative flex justify-center items-center pr-3 mt-10 bg-white dark:bg-blue-900 rounded-md shadow-md overflow-hidden"
+        class="relative flex justify-center items-center md:w-full md:max-w-lg pr-3 bg-white dark:bg-blue-900 rounded-md shadow-md overflow-hidden"
         @submit.prevent
     >
         <div class="p-3 cursor-pointer">

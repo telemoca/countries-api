@@ -45,16 +45,18 @@ const formattedPopulation = (population: number) => {
 </script>
 
 <template>
-    <div class="w-[90%] m-auto">
-        <SearchBar v-model="user_research" />
-        <FilterDropdown v-model="user_filter" />
+    <div class="w-[90%] m-auto font-display">
+        <div class="md:flex justify-between items-center mt-10">
+            <SearchBar v-model="user_research" />
+            <FilterDropdown v-model="user_filter" />
+        </div>
         <div v-if="error">{{ error }}</div>
-        <div v-else class="grid gap-10 py-10 px-5">
+        <div v-else class="grid gap-10 py-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
             <NuxtLink
                 v-for="country in researchedAndFilteredData"
                 :key="country.cca3"
                 :to="country.cca3"
-                class="rounded-md bg-white dark:bg-blue-900 shadow-md overflow-hidden"
+                class="max-w-[900px] m-auto rounded-md bg-white dark:bg-blue-900 h-full shadow-md overflow-hidden"
             >
                 <img
                     :src="country.flags.svg"

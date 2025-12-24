@@ -27,7 +27,7 @@ const deleteSelectedRegion = () => {
 </script>
 
 <template>
-    <div class="flex items-center gap-2 mt-5">
+    <div class="flex items-center gap-2 mt-5 md:mt-0">
         <div class="relative w-fit">
             <div
                 ref="dropdown"
