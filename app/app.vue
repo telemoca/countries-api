@@ -2,12 +2,12 @@
 const colorMode = useColorMode()
 
 const isDark = computed({
-  get() {
-    return colorMode.value === 'dark'
-  },
-  set(_isDark) {
-    colorMode.preference = _isDark ? 'dark' : 'light'
-  }
+    get() {
+        return colorMode.value === "dark"
+    },
+    set(_isDark) {
+        colorMode.preference = _isDark ? "dark" : "light"
+    },
 })
 
 const darkModeText = computed(() => {
@@ -22,7 +22,7 @@ const darkModeIconName = computed(() =>
 </script>
 
 <template>
-    <div class="">
+    <NuxtLayout>
         <header
             class="relative flex justify-between py-8 px-5 shadow-md font-display dark:bg-blue-900"
         >
@@ -49,13 +49,17 @@ const darkModeIconName = computed(() =>
                 </div>
             </ClientOnly>
         </header>
-        <slot />
-    </div>
+            <NuxtPage />
+    </NuxtLayout>
 </template>
 
 <style>
 body {
     @apply bg-gray-50 dark:bg-blue-950 dark:text-white;
+}
+
+body * {
+    @apply transition-colors duration-200;
 }
 </style>
 
@@ -76,5 +80,14 @@ body {
 .v-leave-to {
     transform: translateY(5px);
     opacity: 0;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.2s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
 }
 </style>

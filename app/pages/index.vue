@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const { data, error } = useFetch<Country[]>(
     "https://restcountries.com/v3.1/all?fields=cca3,name,population,region,capital,flags",
     {
@@ -17,7 +18,10 @@ const matchesSearch = (country: Country, user_research: string) => {
         country.region,
         country.cca3,
     ]
-    const splitted_research = user_research.toLowerCase().split(" ").filter(Boolean)
+    const splitted_research = user_research
+        .toLowerCase()
+        .split(" ")
+        .filter(Boolean)
 
     return splitted_research.every((word) => {
         return fields.some((field) => {
@@ -54,17 +58,20 @@ const formattedPopulation = (population: number) => {
             <FilterDropdown v-model="user_filter" />
         </div>
         <div v-if="error">{{ error }}</div>
-        <div v-else class="grid gap-10 py-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
+        <div
+            v-else
+            class="grid gap-10 py-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2"
+        >
             <NuxtLink
                 v-for="country in researchedAndFilteredData"
                 :key="country.cca3"
                 :to="country.cca3"
-                class="max-w-[900px] m-auto rounded-md bg-white dark:bg-blue-900 h-full w-full shadow-md overflow-hidden"
+                class="max-w-[900px] m-auto rounded-md bg-white dark:bg-blue-900 h-full w-full shadow-neutral-400 dark:shadow-neutral-900 shadow-base overflow-hidden"
             >
-                <img
+                <NuxtImg
                     :src="country.flags.svg"
                     :alt="country.flags.alt"
-                    class=""
+                    loading="lazy"
                 />
                 <div class="m-7 mt-5">
                     <p class="font-bold text-lg mb-4">

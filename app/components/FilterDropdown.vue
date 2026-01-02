@@ -27,11 +27,11 @@ const deleteSelectedRegion = () => {
 </script>
 
 <template>
-    <div class="relative flex items-center gap-2 mt-5 lg:mt-0">
+    <div class="relative flex items-center gap-2 mt-5 lg:mt-0 ">
         <div class="relative w-fit">
             <div
                 ref="dropdown"
-                class="flex items-center gap-3 p-3 bg-white dark:bg-blue-900 rounded-md shadow-md select-none cursor-pointer"
+                class="flex items-center gap-3 p-3 bg-white dark:bg-blue-900 rounded-md shadow-neutral-400 dark:shadow-neutral-900 shadow-base select-none cursor-pointer"
                 @click="toggle()"
             >
                 <p>Filter by Region</p>
@@ -43,7 +43,7 @@ const deleteSelectedRegion = () => {
             <Transition>
                 <div
                     v-if="isOpen"
-                    class="absolute flex flex-col gap-2 top-full w-full mt-2 p-3 bg-white dark:bg-blue-900 rounded-md shadow-md"
+                    class="absolute flex flex-col gap-2 top-full w-full mt-2 p-3 bg-white dark:bg-blue-900 rounded-md shadow-neutral-400 dark:shadow-neutral-900 shadow-base"
                 >
                     <p
                         v-for="[label, value] in Object.entries(regions)"
