@@ -17,10 +17,13 @@ const matchesSearch = (country: Country, user_research: string) => {
         country.region,
         country.cca3,
     ]
+    const splitted_research = user_research.toLowerCase().split(" ").filter(Boolean)
 
-    return fields.some((field) =>
-        field?.toLowerCase().includes(user_research.toLowerCase())
-    )
+    return splitted_research.every((word) => {
+        return fields.some((field) => {
+            return field?.toLowerCase().includes(word)
+        })
+    })
 }
 
 const researchedAndFilteredData = computed(() => {
@@ -46,7 +49,7 @@ const formattedPopulation = (population: number) => {
 
 <template>
     <div class="w-[90%] m-auto font-display">
-        <div class="md:flex justify-between items-center mt-10">
+        <div class="lg:flex justify-between items-center mt-10">
             <SearchBar v-model="user_research" />
             <FilterDropdown v-model="user_filter" />
         </div>
@@ -56,7 +59,7 @@ const formattedPopulation = (population: number) => {
                 v-for="country in researchedAndFilteredData"
                 :key="country.cca3"
                 :to="country.cca3"
-                class="max-w-[900px] m-auto rounded-md bg-white dark:bg-blue-900 h-full shadow-md overflow-hidden"
+                class="max-w-[900px] m-auto rounded-md bg-white dark:bg-blue-900 h-full w-full shadow-md overflow-hidden"
             >
                 <img
                     :src="country.flags.svg"

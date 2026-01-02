@@ -38,7 +38,7 @@ const darkModeIconName = computed(() =>
                         mode="svg"
                         restart="always"
                     />
-                    <Transition>
+                    <Transition mode="out-in">
                         <p
                             :key="darkModeText"
                             class="absolute right-0 font-medium dark:text-white"
@@ -61,20 +61,20 @@ body {
 
 <style scoped>
 .v-enter-active {
-    transition: all 0.5s ease;
+    transition: all 0.35s ease;
 }
 
 .v-leave-active {
-    transition: transform 0.5s ease, opacity 0.3s ease-out;
+    transition: transform 0.35s ease, opacity 0.2s ease-out;
 }
 
 .v-enter-from {
-    transform: translateY(-15px);
+    transform: translateY(-5px);
     opacity: 0;
 }
 
 .v-leave-to {
-    transform: translateY(15px);
+    transform: translateY(5px);
     opacity: 0;
 }
 </style>

@@ -27,7 +27,7 @@ const deleteSelectedRegion = () => {
 </script>
 
 <template>
-    <div class="flex items-center gap-2 mt-5 md:mt-0">
+    <div class="relative flex items-center gap-2 mt-5 lg:mt-0">
         <div class="relative w-fit">
             <div
                 ref="dropdown"
@@ -56,13 +56,15 @@ const deleteSelectedRegion = () => {
                 </div>
             </Transition>
         </div>
-        <div
-            v-if="user_selected_region"
-            class="p-3 bg-white dark:bg-blue-900 rounded-md shadow-md cursor-pointer"
-            @click="deleteSelectedRegion"
-        >
-            <Icon name="line-md:close-small" class="translate-y-[2px]" />
-        </div>
+        <Transition name="filter_cross">
+            <div
+                v-show="user_selected_region"
+                class="p-3 bg-white dark:bg-blue-900 rounded-md shadow-md cursor-pointer lg:absolute lg:right-full lg:mr-2"
+                @click="deleteSelectedRegion"
+            >
+                <Icon name="line-md:close-small" class="translate-y-[2px]" />
+            </div>
+        </Transition>
     </div>
 </template>
 
@@ -82,6 +84,24 @@ const deleteSelectedRegion = () => {
 
 .v-leave-to {
     transform: translateY(-5px);
+    opacity: 0;
+}
+
+.filter_cross-enter-active {
+    transition: all 0.2s ease;
+}
+
+.filter_cross-leave-active {
+    transition: all 0.2s ease;
+}
+
+.filter_cross-enter-from {
+    transform: scale(0.5);
+    opacity: 0;
+}
+
+.filter_cross-leave-to {
+    transform: scale(0.5);
     opacity: 0;
 }
 </style>
