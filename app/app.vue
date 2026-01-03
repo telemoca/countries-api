@@ -26,7 +26,7 @@ const darkModeIconName = computed(() =>
         <header
             class="relative flex justify-between py-8 px-5 shadow-md font-display dark:bg-blue-900"
         >
-            <p class="font-extrabold dark:text-white">Where in the world?</p>
+            <h1 class="font-extrabold dark:text-white">Where in the world?</h1>
             <ClientOnly fallback-tag="div">
                 <div
                     class="relative flex items-center justify-between w-[6.5rem] cursor-pointer select-none"
