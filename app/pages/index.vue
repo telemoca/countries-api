@@ -52,7 +52,7 @@ const formattedPopulation = (population: number) => {
 </script>
 
 <template>
-    <div class="w-[90%] m-auto font-display">
+    <main class="w-[90%] m-auto font-display">
         <div class="lg:flex justify-between items-center mt-10">
             <SearchBar v-model="user_research" />
             <FilterDropdown v-model="user_filter" />
@@ -94,5 +94,5 @@ const formattedPopulation = (population: number) => {
                 </div>
             </NuxtLink>
         </div>
-    </div>
+    </main>
 </template>

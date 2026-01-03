@@ -53,7 +53,7 @@ useHead({
 </script>
 
 <template>
-    <div class="w-[90%] m-auto py-7 font-display">
+    <main class="w-[90%] m-auto py-7 font-display">
         <NuxtLink
             class="flex items-center gap-2 p-2 px-4 w-fit rounded-sm shadow-neutral-400 dark:shadow-neutral-900 shadow-base dark:bg-blue-900"
             to="/"
@@ -130,7 +130,7 @@ useHead({
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </template>
 
 <style scoped></style>
